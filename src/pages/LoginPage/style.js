@@ -1,7 +1,14 @@
-import styled from 'styled-components'
+import styled, { keyframes } from 'styled-components';
+import { fadeInRight, fadeInLeft, fadeOutLeft } from 'react-animations';
+
+const fadeRight = keyframes`${fadeInRight}`;
+
+const fadeLeft = keyframes`${fadeInLeft}`;
+
+const fadeOut = keyframes`${fadeOutLeft}`
 
 export const Background = styled.div`
-    background-image: url('https://i.imgur.com/LkGuWbL.jpg');
+    /* background-image: url('https://i.imgur.com/LkGuWbL.jpg'); */
     background-size: cover;
     height: 100vh;
     display: flex;
@@ -11,6 +18,7 @@ export const Background = styled.div`
 `
 
 export const Container = styled.div`
+	display: flex;
 	background-color: rgba(255, 255, 255, .75);
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
@@ -22,7 +30,13 @@ export const Container = styled.div`
 	min-height: 480px;
 `
 
-export const LoginContainer = styled.div`
+export const FormContainer = styled.div`
+	margin: auto;
+	width: 50%;
+	animation: 1s ${fadeRight};
+	/* width: 75%; */
+	/* text-align: center; */
+
 	/* position: absolute;
 	top: 0;
 	height: 100%;
@@ -33,7 +47,12 @@ export const LoginContainer = styled.div`
 	z-index: 1; */
 	`
 
+
+
 export const SignupContainer = styled.div`
+	margin: auto;
+	width: 50%;
+	animation: 2s ${fadeLeft};
 	/* position: absolute;
 	top: 0;
 	height: 100%;
@@ -47,7 +66,7 @@ export const OverlayContainer = styled.div`
 
 `
 
-export const Input = styled.input `
+export const Input = styled.input`
 	background-color: #eee;
 	border: none;
 	padding: 12px 15px;

@@ -1,32 +1,51 @@
-import React from 'react';
+import React, { Component } from 'react';
 import LoginForm from '../../components/LoginForm/LoginForm'
 import SignupForm from '../../components/SignupForm/SignupForm'
 
 import {
-        Background, 
-        Container, 
-        LoginContainer,
-        SignupContainer, 
-        OverlayContainer
-        } from './style'
+  Background,
+  Container,
+  LoginContainer,
+  SignupContainer,
+  OverlayContainer,
+  FormContainer
+} from './style'
 
-const LoginPage = (props) =>{
+class LoginPage extends Component {
+  state = {
+    isLoginForm: true
+  }
+  doHandleToggle = () => this.setState({ isLoginForm: !this.state.isLoginForm })
 
-  return (
-    <Background>
-      <Container>
-        <LoginContainer>
-          <LoginForm handleSignupOrLogin={props.handleSignupOrLogin}/>
-        </LoginContainer>
-        <SignupContainer>
-          <SignupForm handleSignupOrLogin={props.handleSignupOrLogin}/>
-        </SignupContainer>
-        <OverlayContainer>
+  render() {
+    const { isLoginForm } = this.state
+    // const isLoginForm = this.state.isLoginForm
+    return (
+      <Background>
+        <Container>
+          {
+            isLoginForm
+              ? <FormContainer>
+                <LoginForm
+                  handleSignupOrLogin={this.props.handleSignupOrLogin}
+                  doHandleToggle={this.doHandleToggle}
+                />
+              </FormContainer>
+              : <SignupContainer>
+                <SignupForm
+                  handleSignupOrLogin={this.props.handleSignupOrLogin}
+                  doHandleToggle={this.doHandleToggle}
+                />
+              </SignupContainer>
+          }
 
-        </OverlayContainer>
-      </Container>
-    </Background>
-  );
+
+          {/* <OverlayContainer>
+        </OverlayContainer> */}
+        </Container>
+      </Background>
+    );
+  }
 }
 
 export default LoginPage;
